@@ -3,9 +3,7 @@ package br.com.fiap.soat.service;
 import br.com.fiap.soat.dto.NotificacaoMercadoPagoDto;
 import br.com.fiap.soat.entity.StatusPagamento;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.NotFoundException;
-import br.com.fiap.soat.exception.messages.BusinessRuleMessage;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.PagamentoRepository;
 import br.com.fiap.soat.service.contract.Service;
@@ -34,7 +32,7 @@ public class AtualizarPagamentoService implements Service<NotificacaoMercadoPago
 
   @Override
   public Void execute(NotificacaoMercadoPagoDto notificacao)
-      throws BadRequestException, BusinessRuleException, NotFoundException {
+      throws BadRequestException, NotFoundException {
 
     // Valida a requisição
     NotificacaoValidator.validar(notificacao);
@@ -45,13 +43,8 @@ public class AtualizarPagamentoService implements Service<NotificacaoMercadoPago
       throw new NotFoundException(NotFoundMessage.ID_PAGAMENTO);
     }
 
-    // Verifica se o pagamento já foi aprovado
-    var pagamento = pagamentoOpt.get();
-    if (pagamento.getStatus() == StatusPagamento.APROVADO) {
-      throw new BusinessRuleException(BusinessRuleMessage.PEDIDO_PAGO);
-    }
-
     // Atualiza o pagamento
+    var pagamento = pagamentoOpt.get();
     var status = StatusPagamento.fromString(notificacao.getStatus());
     pagamento.setStatus(status);
 

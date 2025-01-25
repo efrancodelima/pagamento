@@ -5,7 +5,7 @@ package br.com.fiap.soat.exception.messages;
  */
 public enum BusinessRuleMessage {
     
-  PEDIDO_PAGO("Esse pedido já teve o pagamento aprovado.");
+  PAGAMENTO_JA_EXISTE("Esse pedido já possui um pagamento vinculado.");
 
   private String mensagem;
 

@@ -2,7 +2,6 @@ package br.com.fiap.soat.service;
 
 import br.com.fiap.soat.dto.NovoPagamentoDto;
 import br.com.fiap.soat.entity.PagamentoJpa;
-import br.com.fiap.soat.entity.StatusPagamento;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.messages.BusinessRuleMessage;
@@ -35,23 +34,20 @@ public class NovoPagamentoService implements Service<NovoPagamentoDto, Pagamento
   public PagamentoJpa execute(NovoPagamentoDto novoPagamento)
       throws BadRequestException, BusinessRuleException {
 
+    // Valida a requisição
     NovoPagamentoValidator.validar(novoPagamento);
 
-    if (pedidoJaFoiPago(novoPagamento.getNumeroPedido())) {
-      throw new BusinessRuleException(BusinessRuleMessage.PEDIDO_PAGO);
+    // Verifica se o pedido já possui um pagamento vinculado
+    var pedidoJaPossuiPagamento = repository
+        .existsByNumeroPedido(novoPagamento.getNumeroPedido());
+
+    if (pedidoJaPossuiPagamento) {
+      throw new BusinessRuleException(BusinessRuleMessage.PAGAMENTO_JA_EXISTE);
     }
     
+    // Mapeia o novo pagamento e salva
     var pagamento = PagamentoMapper.toEntity(novoPagamento);
-
     return repository.save(pagamento);
   }
 
-  private boolean pedidoJaFoiPago(long numeroPedido) {
-
-    var pagamentoJaExiste = repository.findByNumeroPedido(numeroPedido);
-
-    return pagamentoJaExiste.isPresent()
-        && pagamentoJaExiste.get().getStatus() == StatusPagamento.APROVADO;
-  }
-  
 }

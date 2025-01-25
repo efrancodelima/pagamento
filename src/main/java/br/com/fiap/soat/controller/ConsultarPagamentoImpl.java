@@ -4,7 +4,6 @@ import br.com.fiap.soat.controller.contract.ConsultarPagamento;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.ConsultarPagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controlador REST para criar um pagamento e vinculá-lo a um pedido.
+ * Responsável por receber as notificações do sistema de pedidos.
  */
 @RestController
 @RequestMapping("/pagamento")
@@ -43,6 +43,7 @@ public class ConsultarPagamentoImpl  implements ConsultarPagamento {
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ResponseWrapper<>(e.getMessage()));
+    
     } catch (NotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));

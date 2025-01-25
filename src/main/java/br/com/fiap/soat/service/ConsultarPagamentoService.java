@@ -2,7 +2,6 @@ package br.com.fiap.soat.service;
 
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.PagamentoRepository;

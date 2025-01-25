@@ -4,7 +4,6 @@ import br.com.fiap.soat.controller.contract.AtualizarPagamento;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.dto.NotificacaoMercadoPagoDto;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.service.AtualizarPagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controlador REST para atualizar um pagamento.
+ * Responsável por receber as notificações do Mercado Pago.
  */
 @RestController
 @RequestMapping("/pagamento")
@@ -42,10 +42,6 @@ public class AtualizarPagamentoImpl implements AtualizarPagamento {
   
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body(new ResponseWrapper<>(e.getMessage()));
-    
-    } catch (BusinessRuleException e) {
-      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
           .body(new ResponseWrapper<>(e.getMessage()));
     
     } catch (NotFoundException e) {
