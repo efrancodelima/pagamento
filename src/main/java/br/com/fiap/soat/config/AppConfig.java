@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class AppConfig {
 
   /**
-   * Retorna o bean.
+   * Retorna o bean RestTemplate.
    */
   @Bean
   public RestTemplate restTemplate() {

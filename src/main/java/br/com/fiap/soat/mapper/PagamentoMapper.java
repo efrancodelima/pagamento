@@ -3,6 +3,7 @@ package br.com.fiap.soat.mapper;
 import br.com.fiap.soat.dto.NovoPagamentoDto;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.entity.StatusPagamento;
+import java.time.LocalDateTime;
 
 /**
  * Responsável por mapear um objeto NovoPagamentoDto para uma entidade JPA.
@@ -24,6 +25,7 @@ public class PagamentoMapper {
     pagamento.setNumeroPedido(novoPagamento.getNumeroPedido());
     pagamento.setValor(novoPagamento.getValorPedido());
     pagamento.setSituacao(StatusPagamento.AGUARDANDO_PAGAMENTO);
+    pagamento.setTimestamp(LocalDateTime.now());
     return pagamento;
   }
     

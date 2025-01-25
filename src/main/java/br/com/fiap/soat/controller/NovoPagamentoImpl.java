@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controlador REST para criar um pagamento e vinculá-lo a um pedido.
  */
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/pagamento")
 public class NovoPagamentoImpl implements NovoPagamento {
 
   private final NovoPagamentoService service;
@@ -42,7 +42,6 @@ public class NovoPagamentoImpl implements NovoPagamento {
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ResponseWrapper<>(e.getMessage()));
-      
     }
   }
     

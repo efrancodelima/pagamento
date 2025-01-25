@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * Entidade JPA Cliente.
+ * Entidade MongoDB Cliente.
  */
 @Data
 @NoArgsConstructor

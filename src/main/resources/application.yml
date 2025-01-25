@@ -1,20 +1,13 @@
 # Profile default
 server:
-  port: 8082
+  port: 8084
 spring:
   application:
     name: app-pagamento
-  datasource:
-    url: ${DATASOURCE_URL}
-    username: ${DATASOURCE_USERNAME}
-    password: ${DATASOURCE_PASSWORD}
-    driverClassName: "com.mysql.cj.jdbc.Driver"
-  jpa:
-    show-sql: false
-    open-in-view: false
-    hibernate:
-      ddl-auto: "update"
-      dialect: "org.hibernate.dialect.MySQL8Dialect"
+  data:
+    mongodb:
+      uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
+      auto-index-creation: true
 
 # Profile para a AWS
 ---
@@ -23,23 +16,26 @@ spring:
     activate:
       on-profile: dev
 
-# Profile local para rodar com o H2
+# Profile local para rodar com MongoDB Embedded
 ---
 spring:
   config:
     activate:
       on-profile: local
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: password
-    initialization-mode: always
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  jpa:
-    # defer-datasource-initialization: true
-    hibernate:
-      ddl-auto: update
+  data:
+    mongo:
+      database: pagamento
+      username: usuarioqq
+      password: senhaqq
+      host: mongodb://localhost
+      port: 27017
+  mongodb:
+    uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
+    auto-index-creation: true
+    # embedded:
+    #   version: 4.18.1
+    #   storage:
+    #     database-dir: target/mongo-data
+    #     repl-set-name: rs0
+    #   features:
+    #     sync-delay: 0
