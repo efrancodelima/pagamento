@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 /**
  * Responsável por validar a requisição do controller NovoPagamento.
  */
-public class NovoPagValidator {
+public class NovoPagamentoValidator {
 
-  private NovoPagValidator() {}
+  private NovoPagamentoValidator() {}
 
   /**
    * Valida a requisição do controller NovoPagamento.
@@ -20,16 +20,8 @@ public class NovoPagValidator {
    */
   public static void validar(NovoPagamentoDto novoPag) throws BadRequestException {
 
-    validarNumeroPedido(novoPag.getNumeroPedido());
+    NumeroPedidoValidator.validar(novoPag.getNumeroPedido());
     validarValorPedido(novoPag.getValorPedido());
-  }
-
-  private static void validarNumeroPedido(Long numeroPedido)
-      throws BadRequestException {
-
-    if (numeroPedido == null || numeroPedido < 1) {
-      throw new BadRequestException(BadRequestMessage.NUMERO_PEDIDO);
-    }
   }
 
   private static void validarValorPedido(BigDecimal valorPedido)

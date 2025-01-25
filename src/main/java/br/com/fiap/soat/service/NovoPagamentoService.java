@@ -6,12 +6,12 @@ import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.mapper.PagamentoMapper;
 import br.com.fiap.soat.repository.PagamentoRepository;
 import br.com.fiap.soat.service.contract.Service;
-import br.com.fiap.soat.validator.NovoPagValidator;
+import br.com.fiap.soat.validator.NovoPagamentoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Service para buscar clientes pelo número do CPF.
+ * Service para criar um pagamento.
  */
 @Component
 public class NovoPagamentoService implements Service<NovoPagamentoDto, PagamentoJpa> {
@@ -31,7 +31,7 @@ public class NovoPagamentoService implements Service<NovoPagamentoDto, Pagamento
   @Override
   public PagamentoJpa execute(NovoPagamentoDto novoPagamento) throws BadRequestException {
 
-    NovoPagValidator.validar(novoPagamento);
+    NovoPagamentoValidator.validar(novoPagamento);
 
     var pagamento = PagamentoMapper.toEntity(novoPagamento);
 
