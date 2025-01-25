@@ -8,5 +8,6 @@
   "java.checkstyle.version": "10.20.2",
   "java.checkstyle.configuration": "${workspaceFolder}/config/google_checks.xml",
   "java.compile.nullAnalysis.mode": "disabled",
-  "java.debug.settings.onBuildFailureProceed": true
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

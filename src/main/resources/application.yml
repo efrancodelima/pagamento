@@ -1,9 +1,9 @@
 # Profile default
 server:
-  port: 8080
+  port: 8082
 spring:
   application:
-    name: app-pedido
+    name: app-pagamento
   datasource:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
