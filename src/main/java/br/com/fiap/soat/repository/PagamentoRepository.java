@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Interface do repositório de clientes.
  */
 @Repository
-public interface PagamentoRepository extends MongoRepository<PagamentoJpa, String> {
+public interface PagamentoRepository extends MongoRepository<PagamentoJpa, Long> {
 
   /**
    * Busca um pagamento a partir do número do pedido.
@@ -17,5 +17,13 @@ public interface PagamentoRepository extends MongoRepository<PagamentoJpa, Strin
    * @param numeroPedido O número do pedido.
    * @return Um objeto contendo o pagamento entrado ou null.
    */
-  Optional<PagamentoJpa> findByNumeroPedido(Long numeroPedido);
+  Optional<PagamentoJpa> findByNumeroPedido(long numeroPedido);
+
+  /**
+   * Verifica se já existe um pagamento para o pedido informado.
+   *
+   * @param numeroPedido O número do pedido.
+   * @return Um boolean indicando a exist~encia ou não do pagamento.
+   */
+  boolean existsByNumeroPedido(long numeroPedido);
 }

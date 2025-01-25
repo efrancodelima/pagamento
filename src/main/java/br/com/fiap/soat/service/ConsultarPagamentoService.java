@@ -2,6 +2,7 @@ package br.com.fiap.soat.service;
 
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
+import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.NotFoundException;
 import br.com.fiap.soat.exception.messages.NotFoundMessage;
 import br.com.fiap.soat.repository.PagamentoRepository;
@@ -36,7 +37,7 @@ public class ConsultarPagamentoService implements Service<Long, PagamentoJpa> {
     var pagamento =  repository.findByNumeroPedido(numeroPedido);
 
     if (!pagamento.isPresent()) {
-      throw new NotFoundException(NotFoundMessage.PAGAMENTO);
+      throw new NotFoundException(NotFoundMessage.PAG_NUM_PEDIDO);
     }
     
     return pagamento.get();

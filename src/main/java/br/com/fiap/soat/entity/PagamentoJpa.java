@@ -22,14 +22,14 @@ public class PagamentoJpa implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private String codigoPagamento;
+  private Long codigoPagamento;
 
   @Indexed
   private Long numeroPedido;
 
   private BigDecimal valor;
 
-  private StatusPagamento situacao;
+  private StatusPagamento status;
 
   private LocalDateTime timestamp;
 }

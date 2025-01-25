@@ -1,5 +1,6 @@
 package br.com.fiap.soat.mapper;
 
+import br.com.fiap.soat.dto.NotificacaoMercadoPagoDto;
 import br.com.fiap.soat.dto.NovoPagamentoDto;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.entity.StatusPagamento;
@@ -21,12 +22,12 @@ public class PagamentoMapper {
   public static PagamentoJpa toEntity(NovoPagamentoDto novoPagamento) {
 
     var pagamento = new PagamentoJpa();
-    pagamento.setCodigoPagamento(novoPagamento.getNumeroPedido().toString());
+    pagamento.setCodigoPagamento(novoPagamento.getNumeroPedido());
     pagamento.setNumeroPedido(novoPagamento.getNumeroPedido());
     pagamento.setValor(novoPagamento.getValorPedido());
-    pagamento.setSituacao(StatusPagamento.AGUARDANDO_PAGAMENTO);
+    pagamento.setStatus(StatusPagamento.AGUARDANDO_PAGAMENTO);
     pagamento.setTimestamp(LocalDateTime.now());
     return pagamento;
   }
-    
+ 
 }

@@ -7,6 +7,7 @@ public enum BadRequestMessage {
     
   NUMERO_PEDIDO("O número do pedido é inválido."),
   VALOR_PEDIDO("O valor do pedido deve ser maior que zero."),
+  ID_PAGAMENTO("O id do pagamento é inválido."),
   STATUS_PAGAMENTO("O status do pagamento é inválido.");
 
   private String mensagem;

@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Classe PagRequestDto.
+ * Classe NovoPagamentoDto.
  * DTO usado na requisição do service NovoPagamentoService.
  */
 @Data

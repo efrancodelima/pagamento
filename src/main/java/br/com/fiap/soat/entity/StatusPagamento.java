@@ -1,33 +1,43 @@
 package br.com.fiap.soat.entity;
 
-import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.messages.BadRequestMessage;
-
 /**
  * Lista os possíveios status do pagamento.
  */
 public enum StatusPagamento {
 
-  AGUARDANDO_PAGAMENTO, APROVADO, REPROVADO;
+  AGUARDANDO_PAGAMENTO("PENDING"),
+  APROVADO("APPROVED"),
+  REPROVADO("REJECTED"),
+  DEVOLVIDO("REFUNDED"),
+  CANCELADO("CHARGED_BACK"),
+  EM_DISPUTA("IN_DISPUTE");
+
+  private String texto;
+
+  StatusPagamento(String texto) {
+    this.texto = texto;
+  }
+
+  public String getMessage() {
+    return texto;
+  }
 
   /**
-   * Retorna o enum correspondente a partir de uma string.
+   * Retorna o enum cujo texto corresponde ao texto recebido.
    *
-   * @param statusPagamentoStr Status do pagamento (string).
-   * @return Status do pagamento (enum).
-   * @throws BadRequestException Exceção do tipo bad request lançada pelo método.
+   * @param texto O status do pagamento (string).
+   * @return O status do pagamento (enum).
    */
-  public static StatusPagamento fromString(String statusPagamentoStr) throws BadRequestException {
-
-    statusPagamentoStr = statusPagamentoStr == null
-      ? null : statusPagamentoStr.toUpperCase().trim();
-
-    try {
-      return StatusPagamento.valueOf(statusPagamentoStr);
-
-    } catch (Exception e) {
-      throw new BadRequestException(BadRequestMessage.STATUS_PAGAMENTO);
-    }
-  }
+  public static StatusPagamento fromString(String texto) {
     
+    for (var itemEnum : StatusPagamento.values()) {
+      texto = texto.trim().toUpperCase();
+
+      if (itemEnum.texto.equals(texto)) {
+        return itemEnum;
+      }
+    }
+    return null;
+  }
+  
 }

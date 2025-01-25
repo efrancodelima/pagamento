@@ -6,8 +6,8 @@ spring:
     name: app-pagamento
   data:
     mongodb:
-      # uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
-      uri: ${AWS_URI_MONGO}
+      uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
+      # uri: ${AWS_URI_MONGO}
       auto-index-creation: true
 
 # Profile para a AWS
@@ -24,18 +24,12 @@ spring:
     activate:
       on-profile: local
   data:
-    mongo:
-      database: pagamento
-      username: usuarioqq
-      password: senhaqq
-      host: mongodb://localhost
-      port: 27017
-  mongodb:
-    auto-index-creation: true
-    embedded:
-      version: 4.18.1
-      storage:
-        database-dir: target/mongo-data
-        repl-set-name: rs0
-      features:
-        sync-delay: 0
+    mongodb:
+      auto-index-creation: true
+      embedded:
+        version: 4.18.1
+        storage:
+          database-dir: target/mongo-data
+          repl-set-name: rs0
+        features:
+          sync-delay: 0

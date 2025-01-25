@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PagamentoDto {
+public class NotificacaoMercadoPagoDto {
 
   @Schema(description = "Código de identificação do pagamento.", example = "1")
   public Long id;
