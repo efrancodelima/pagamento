@@ -38,7 +38,7 @@ public class ConsultarPagamentoService implements Service<Long, PagamentoJpa> {
     if (!pagamento.isPresent()) {
       throw new NotFoundException(NotFoundMessage.PAG_NUM_PEDIDO);
     }
-    
+
     return pagamento.get();
   }
   

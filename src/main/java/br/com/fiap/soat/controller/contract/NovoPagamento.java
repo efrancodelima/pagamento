@@ -26,7 +26,7 @@ public interface NovoPagamento {
    * @return Um objeto do tipo ResponseEntity sem corpo (status 204),
    *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
    */
-  @Hidden
+  // @Hidden
   @PostMapping(value = "/novo/")
   ResponseEntity<ResponseWrapper<PagamentoJpa>>
         novoPagamento(@RequestBody NovoPagamentoDto novoPagamento);

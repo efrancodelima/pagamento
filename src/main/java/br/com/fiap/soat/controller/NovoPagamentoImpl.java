@@ -39,10 +39,11 @@ public class NovoPagamentoImpl implements NovoPagamento {
     try {
       var pagamento = service.execute(novoPagamento);
       return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper<>(pagamento));
-  
+
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ResponseWrapper<>(e.getMessage()));
+    
     } catch (BusinessRuleException e) {
       return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
           .body(new ResponseWrapper<>(e.getMessage()));

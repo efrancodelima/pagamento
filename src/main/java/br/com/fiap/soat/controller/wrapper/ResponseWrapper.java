@@ -21,10 +21,10 @@ public class ResponseWrapper<T> {
   /**
    * O construtor da resposta bem sucedida.
    *
-   * @param msgError A mensagem de erro a ser inserida no corpo da resposta.
+   * @param errorMsg A mensagem de erro a ser inserida no corpo da resposta.
    */
-  public ResponseWrapper(String msgError) {
-    this.errorMsg = msgError;
+  public ResponseWrapper(String errorMsg) {
+    this.errorMsg = errorMsg;
   }
 
   // Getters e setters
