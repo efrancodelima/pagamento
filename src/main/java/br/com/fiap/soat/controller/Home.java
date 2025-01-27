@@ -12,13 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class Home {
 
-  /**
-   * Mostra o link para a API web da aplicação.
-   *
-   * @return Uma string contendo o link da API.
-   */
-  @GetMapping
   @Hidden
+  @GetMapping
   public String showHome() {
     return "Tech Challenge Fase 4: microsserviço de PAGAMENTOS rodando!<br><br>"
         + "Link para a API: <a href=\"/swagger-ui/index.html\">Swagger UI</a>";

@@ -1,7 +1,6 @@
 package br.com.fiap.soat.mapper;
 
-import br.com.fiap.soat.dto.NotificacaoMercadoPagoDto;
-import br.com.fiap.soat.dto.NovoPagamentoDto;
+import br.com.fiap.soat.dto.CriarPagamentoDto;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.entity.StatusPagamento;
 import java.time.LocalDateTime;
@@ -13,13 +12,7 @@ public class PagamentoMapper {
 
   private PagamentoMapper() {}
 
-  /**
-   * Mapeia um objeto NovoPagamentoDto para uma entidade JPA.
-   *
-   * @param novoPagamento O objeto a ser mapeado.
-   * @return A entidade JPA.
-   */
-  public static PagamentoJpa toEntity(NovoPagamentoDto novoPagamento) {
+  public static PagamentoJpa toEntity(CriarPagamentoDto novoPagamento) {
 
     var pagamento = new PagamentoJpa();
     pagamento.setCodigoPagamento(novoPagamento.getNumeroPedido());
@@ -29,5 +22,4 @@ public class PagamentoMapper {
     pagamento.setTimestamp(LocalDateTime.now());
     return pagamento;
   }
- 
 }

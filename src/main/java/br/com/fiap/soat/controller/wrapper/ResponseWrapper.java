@@ -1,28 +1,25 @@
 package br.com.fiap.soat.controller.wrapper;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 /**
- * Classe para encapsular o objeto de retorno da API,
- * no caso da requisição ser bem sucedida, ou o erro, no caso constrário.
+ * Classe para encapsular o retorno dos controllers.
  */
 public class ResponseWrapper<T> {
 
   private T data;
   private String errorMsg;
 
-  /**
-   * O construtor da resposta bem sucedida.
-   *
-   * @param data O objeto a ser inserido no corpo da resposta.
-   */
+  @JsonCreator
+  public ResponseWrapper(T data, String errorMsg) {
+    this.data = data;
+    this.errorMsg = errorMsg;
+  }
+  
   public ResponseWrapper(T data) {
     this.data = data;
   }
 
-  /**
-   * O construtor da resposta bem sucedida.
-   *
-   * @param errorMsg A mensagem de erro a ser inserida no corpo da resposta.
-   */
   public ResponseWrapper(String errorMsg) {
     this.errorMsg = errorMsg;
   }

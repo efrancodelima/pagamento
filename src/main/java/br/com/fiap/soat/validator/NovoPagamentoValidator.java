@@ -1,8 +1,7 @@
 package br.com.fiap.soat.validator;
 
-import br.com.fiap.soat.dto.NovoPagamentoDto;
+import br.com.fiap.soat.dto.CriarPagamentoDto;
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import java.math.BigDecimal;
 
@@ -13,13 +12,7 @@ public class NovoPagamentoValidator {
 
   private NovoPagamentoValidator() {}
 
-  /**
-   * Valida a requisição do controller NovoPagamento.
-   *
-   * @param novoPag A requisição a ser validada.
-   * @throws BusinessRuleException Exceção do tipo bad request lançada durante a validação.
-   */
-  public static void validar(NovoPagamentoDto novoPag) throws BadRequestException {
+  public static void validar(CriarPagamentoDto novoPag) throws BadRequestException {
 
     NumeroPedidoValidator.validar(novoPag.getNumeroPedido());
     validarValorPedido(novoPag.getValorPedido());
@@ -32,5 +25,4 @@ public class NovoPagamentoValidator {
       throw new BadRequestException(BadRequestMessage.VALOR_PEDIDO);
     }
   }
-  
 }

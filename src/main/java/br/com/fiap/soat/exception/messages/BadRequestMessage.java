@@ -5,7 +5,8 @@ package br.com.fiap.soat.exception.messages;
  */
 public enum BadRequestMessage {
     
-  NUMERO_PEDIDO("O número do pedido é inválido."),
+  NUM_PED_NULL("Informe o número do pedido."),
+  NUM_PED_MIN("O número do pedido é inválido."),
   VALOR_PEDIDO("O valor do pedido deve ser maior que zero."),
   ID_PAGAMENTO("O id do pagamento é inválido."),
   STATUS_PAGAMENTO("O status do pagamento é inválido.");
@@ -19,5 +20,4 @@ public enum BadRequestMessage {
   public String getMessage() {
     return mensagem;
   }
-
 }

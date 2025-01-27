@@ -17,5 +17,4 @@ public enum BadGatewayMessage {
   public String getMessage() {
     return mensagem;
   }
-
 }

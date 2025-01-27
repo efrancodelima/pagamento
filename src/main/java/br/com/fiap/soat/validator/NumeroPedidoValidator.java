@@ -1,27 +1,24 @@
 package br.com.fiap.soat.validator;
 
 import br.com.fiap.soat.exception.BadRequestException;
-import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 
 /**
- * responsável por validar o número do pedido.
+ * Responsável por validar o número do pedido.
  */
 public class NumeroPedidoValidator {
 
   private NumeroPedidoValidator() {}
   
-  /**
-   * Valida o número do pedido.
-   *
-   * @param numeroPedido O número do pedido a ser validado.
-   * @throws BusinessRuleException Exceção do tipo bad request lançada pela validação.
-   */
   public static void validar(Long numeroPedido)
       throws BadRequestException {
 
-    if (numeroPedido == null || numeroPedido < 1) {
-      throw new BadRequestException(BadRequestMessage.NUMERO_PEDIDO);
+    if (numeroPedido == null) {
+      throw new BadRequestException(BadRequestMessage.NUM_PED_NULL);
+    }
+
+    if (numeroPedido < 1) {
+      throw new BadRequestException(BadRequestMessage.NUM_PED_MIN);
     }
   }
 }

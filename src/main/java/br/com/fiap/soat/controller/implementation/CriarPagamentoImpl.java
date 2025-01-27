@@ -1,8 +1,8 @@
-package br.com.fiap.soat.controller;
+package br.com.fiap.soat.controller.implementation;
 
-import br.com.fiap.soat.controller.contract.NovoPagamento;
+import br.com.fiap.soat.controller.contract.CriarPagamento;
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.NovoPagamentoDto;
+import br.com.fiap.soat.dto.CriarPagamentoDto;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRuleException;
@@ -15,26 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controlador REST para criar um pagamento e vinculá-lo a um pedido.
+ * Webhook para receber as notificações do sistema de pedido.
  */
 @RestController
 @RequestMapping("/pagamento")
-public class NovoPagamentoImpl implements NovoPagamento {
+public class CriarPagamentoImpl implements CriarPagamento {
 
   private final NovoPagamentoService service;
 
-  /**
-   * O construtor público da classe.
-   *
-   * @param service O service para criar o pagamento.
-   */
   @Autowired
-  public NovoPagamentoImpl(NovoPagamentoService service) {
+  public CriarPagamentoImpl(NovoPagamentoService service) {
     this.service = service;
   }
 
   @Override
   public ResponseEntity<ResponseWrapper<PagamentoJpa>>
-      novoPagamento(NovoPagamentoDto novoPagamento) {
+      criarPagamento(CriarPagamentoDto novoPagamento) {
     
     try {
       var pagamento = service.execute(novoPagamento);

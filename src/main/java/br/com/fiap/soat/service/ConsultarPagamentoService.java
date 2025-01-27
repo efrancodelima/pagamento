@@ -18,11 +18,6 @@ public class ConsultarPagamentoService implements Service<Long, PagamentoJpa> {
 
   private final PagamentoRepository repository;
 
-  /**
-   * O construtor público do service.
-   *
-   * @param repository O repositório para acesso ao banco de dados.
-   */
   @Autowired
   public ConsultarPagamentoService(PagamentoRepository repository) {
     this.repository = repository;
@@ -41,5 +36,4 @@ public class ConsultarPagamentoService implements Service<Long, PagamentoJpa> {
 
     return pagamento.get();
   }
-  
 }

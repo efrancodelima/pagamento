@@ -20,17 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Tag(name = "Pagamento")
 public interface ConsultarPagamento {
 
-  /**
-   * consulta o pagamento de um pedido.
-   *
-   * @param numeroPedido O número do pedido cujo pagamento será consultado.
-   * @return Um objeto do tipo ResponseWrapper contendo o pagamento,
-   *     em caso de sucesso, ou a mensagem de erro, em caso de falha.
-   */
   @Operation(summary = "Consultar pagamento do pedido", description = Constantes.DESCRICAO)
 
   @ApiResponses(value = {
-
     @ApiResponse(
       responseCode = Constantes.CODE_OK,
       description = Constantes.DESC_OK,

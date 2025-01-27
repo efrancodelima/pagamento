@@ -12,9 +12,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "br.com.fiap.soat.repository")
 public class PagamentoApp {
 
-  /**
-   * Método responsável por iniciar o microsserviço.
-   */
   public static void main(String[] args) {
     var application = new SpringApplication(PagamentoApp.class);
     application.setApplicationStartup(new BufferingApplicationStartup(1024));

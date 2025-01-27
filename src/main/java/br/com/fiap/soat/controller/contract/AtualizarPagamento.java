@@ -1,7 +1,7 @@
 package br.com.fiap.soat.controller.contract;
 
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
-import br.com.fiap.soat.dto.NotificacaoMercadoPagoDto;
+import br.com.fiap.soat.dto.AtualizarPagamentoDto;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +27,6 @@ public interface AtualizarPagamento {
   @Hidden
   @PostMapping(value = "/atualizar/")
   ResponseEntity<ResponseWrapper<Void>>
-      atualizarPagamento(@RequestBody NotificacaoMercadoPagoDto notificacao);
+      atualizarPagamento(@RequestBody AtualizarPagamentoDto notificacao);
 
 }

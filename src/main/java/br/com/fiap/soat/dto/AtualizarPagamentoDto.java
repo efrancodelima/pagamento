@@ -6,13 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Classe PagamentoDto.
- * Usada para mapear alguns dados da notificação do Mercado Pago.
+ * DTO usado para receber a notificação do Mercado Pago.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificacaoMercadoPagoDto {
+public class AtualizarPagamentoDto {
 
   @Schema(description = "Código de identificação do pagamento.", example = "1")
   public Long id;

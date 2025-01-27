@@ -1,7 +1,8 @@
 package br.com.fiap.soat.entity;
 
 /**
- * Lista os possíveios status do pagamento.
+ * Lista os possíveis status do pagamento.
+ * O valor de cada entrada é o texto usado pelo Mercado Pago nas notificações.
  */
 public enum StatusPagamento {
 
@@ -22,12 +23,6 @@ public enum StatusPagamento {
     return texto;
   }
 
-  /**
-   * Retorna o enum cujo texto corresponde ao texto recebido.
-   *
-   * @param texto O status do pagamento (string).
-   * @return O status do pagamento (enum).
-   */
   public static StatusPagamento fromString(String texto) {
     
     for (var itemEnum : StatusPagamento.values()) {
@@ -39,5 +34,4 @@ public enum StatusPagamento {
     }
     return null;
   }
-  
 }

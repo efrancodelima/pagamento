@@ -7,11 +7,6 @@ import br.com.fiap.soat.exception.messages.BadGatewayMessage;
  */
 public class BadGatewayException extends Exception {
 
-  /**
-   * Construtor.
-   *
-   * @param msg Mensagem de erro associada à exceção.
-   */
   public BadGatewayException(BadGatewayMessage msg) {
     super(msg.getMessage());
   }
