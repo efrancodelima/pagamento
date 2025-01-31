@@ -7,7 +7,7 @@ import br.com.fiap.soat.exception.BusinessRuleException;
 import br.com.fiap.soat.mapper.PagamentoMapper;
 import br.com.fiap.soat.repository.PagamentoRepository;
 import br.com.fiap.soat.service.contract.Service;
-import br.com.fiap.soat.validator.NovoPagamentoValidator;
+import br.com.fiap.soat.validator.CriarPagamentoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
  * Service para criar um pagamento.
  */
 @Component
-public class NovoPagamentoService implements Service<CriarPagamentoDto, PagamentoJpa> {
+public class CriarPagamentoService implements Service<CriarPagamentoDto, PagamentoJpa> {
 
   private final PagamentoRepository repository;
 
   @Autowired
-  public NovoPagamentoService(PagamentoRepository repository) {
+  public CriarPagamentoService(PagamentoRepository repository) {
     this.repository = repository;
   }
 
@@ -28,7 +28,7 @@ public class NovoPagamentoService implements Service<CriarPagamentoDto, Pagament
   public PagamentoJpa execute(CriarPagamentoDto novoPagamento)
       throws BadRequestException, BusinessRuleException {
 
-    NovoPagamentoValidator.validar(novoPagamento);
+    CriarPagamentoValidator.validar(novoPagamento);
 
     verificaSePedidoJaPossuiPagamento(novoPagamento.getNumeroPedido());
     

@@ -6,7 +6,7 @@ import br.com.fiap.soat.dto.CriarPagamentoDto;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.BusinessRuleException;
-import br.com.fiap.soat.service.NovoPagamentoService;
+import br.com.fiap.soat.service.CriarPagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pagamento")
 public class CriarPagamentoImpl implements CriarPagamento {
 
-  private final NovoPagamentoService service;
+  private final CriarPagamentoService service;
 
   @Autowired
-  public CriarPagamentoImpl(NovoPagamentoService service) {
+  public CriarPagamentoImpl(CriarPagamentoService service) {
     this.service = service;
   }
 

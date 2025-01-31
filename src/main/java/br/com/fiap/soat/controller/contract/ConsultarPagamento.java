@@ -70,7 +70,7 @@ public interface ConsultarPagamento {
     public static final String EXAMPLE_OK = """
         {
           "data": {
-            "codigoPagamento": "10",
+            "codigoPagamento": 10,
             "numeroPedido": 10,
             "valor": 50,
             "situacao": "AGUARDANDO_PAGAMENTO",
@@ -90,7 +90,7 @@ public interface ConsultarPagamento {
     public static final String EXAMPLE_NOT_FOUND = """
         {
           "data": null,
-          "errorMsg": "Não foi encontrado nenhum pedido para o número informado."
+          "errorMsg": "Nenhum pagamento foi encontrado para o pedido informado."
         }
         """;
 

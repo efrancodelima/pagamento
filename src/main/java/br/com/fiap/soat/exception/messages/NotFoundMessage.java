@@ -5,8 +5,8 @@ package br.com.fiap.soat.exception.messages;
  */
 public enum NotFoundMessage {
 
-  ID_PAGAMENTO("Não foi encontrado nenhum pagamento para o id informado."),
-  PAG_NUM_PEDIDO("Não foi encontrado nenhum pagamento para o pedido informado.");
+  ID_PAGAMENTO("Nenhum pagamento foi encontrado para o id informado."),
+  PAG_NUM_PEDIDO("Nenhum pagamento foi encontrado para o pedido informado.");
 
   private String mensagem;
 

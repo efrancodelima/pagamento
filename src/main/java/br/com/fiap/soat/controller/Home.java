@@ -15,7 +15,7 @@ public class Home {
   @Hidden
   @GetMapping
   public String showHome() {
-    return "Tech Challenge Fase 4: microsserviço de PAGAMENTOS rodando!<br><br>"
+    return "Tech Challenge Fase 4: microsserviço de PAGAMENTO rodando!<br><br>"
         + "Link para a API: <a href=\"/swagger-ui/index.html\">Swagger UI</a>";
   }
 }

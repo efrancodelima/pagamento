@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>br.com.fiap.soat</groupId>
 	<artifactId>pagamento-app</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.0</version>
 	<name>Microsserviço de pagamento</name>
 	<description>Tech Challenge Fase 4 - Software Architecture</description>
 	<packaging>jar</packaging>
@@ -168,10 +168,10 @@
 		<!-- Testes -->
 		
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.mockito</groupId>

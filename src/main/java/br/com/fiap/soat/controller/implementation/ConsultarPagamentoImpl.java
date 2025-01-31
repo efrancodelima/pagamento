@@ -33,14 +33,14 @@ public class ConsultarPagamentoImpl  implements ConsultarPagamento {
     try {
       var pagamento = service.execute(numeroPedido);
       return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(pagamento));
-  
+
     } catch (BadRequestException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ResponseWrapper<>(e.getMessage()));
-    
+
     } catch (NotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
           .body(new ResponseWrapper<>(e.getMessage()));
     }
-  }    
+  }
 }
