@@ -14,6 +14,7 @@ import br.com.fiap.soat.service.ConsultarPagamentoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -22,15 +23,16 @@ import org.springframework.http.HttpStatus;
 class ConsultarPagamentoImplTest {
 
   AutoCloseable closeable;
-  ConsultarPagamentoImpl controller;
-  
+
   @Mock
   ConsultarPagamentoService serviceMock;
 
+  @InjectMocks
+  ConsultarPagamentoImpl controller;
+  
   @BeforeEach
   void setup() {
     closeable = MockitoAnnotations.openMocks(this);
-    this.controller = new ConsultarPagamentoImpl(serviceMock);
   }
 
   @AfterEach

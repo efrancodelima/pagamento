@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -18,18 +19,19 @@ import org.mockito.MockitoAnnotations;
 class CriarPagamentoServiceTest {
 
   AutoCloseable closeable;
-  CriarPagamentoService service;
-  
+
   @Mock
   PagamentoRepository repositoryMock;
 
   @Mock
   PagamentoJpa pagamentoJpaMock;
 
+  @InjectMocks
+  CriarPagamentoService service;
+  
   @BeforeEach
   void setup() {
     closeable = MockitoAnnotations.openMocks(this);
-    this.service = new CriarPagamentoService(repositoryMock);
   }
 
   @AfterEach

@@ -12,6 +12,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -19,18 +20,19 @@ import org.mockito.MockitoAnnotations;
 class AtualizarPagamentoServiceTest {
 
   AutoCloseable closeable;
-  AtualizarPagamentoService service;
-  
+
   @Mock
   PagamentoRepository repositoryMock;
 
   @Mock
   PagamentoJpa pagamentoJpaMock;
 
+  @InjectMocks
+  AtualizarPagamentoService service;
+
   @BeforeEach
   void setup() {
     closeable = MockitoAnnotations.openMocks(this);
-    this.service = new AtualizarPagamentoService(repositoryMock);
   }
 
   @AfterEach
@@ -48,7 +50,7 @@ class AtualizarPagamentoServiceTest {
     assertDoesNotThrow(() -> {
       var response = service.execute(requisicao);
       assertEquals(null, response);
-      // esse service atende a um webhook, então a resposta deve ser nula
+      // esse service atende ao webhook do Mercado Pago, então a resposta deve ser nula
     });
   }
 }

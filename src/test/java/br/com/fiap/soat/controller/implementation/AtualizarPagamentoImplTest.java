@@ -14,6 +14,7 @@ import br.com.fiap.soat.service.AtualizarPagamentoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -22,18 +23,19 @@ import org.springframework.http.HttpStatus;
 class AtualizarPagamentoImplTest {
 
   AutoCloseable closeable;
-  AtualizarPagamentoImpl controller;
-  
+
   @Mock
   AtualizarPagamentoService serviceMock;
 
   @Mock
   AtualizarPagamentoDto requisicaoMock;
 
+  @InjectMocks
+  AtualizarPagamentoImpl controller;
+  
   @BeforeEach
   void setup() {
     closeable = MockitoAnnotations.openMocks(this);
-    this.controller = new AtualizarPagamentoImpl(serviceMock);
   }
 
   @AfterEach

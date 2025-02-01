@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -17,18 +18,19 @@ import org.mockito.MockitoAnnotations;
 class ConsultarPagamentoServiceTest {
 
   AutoCloseable closeable;
-  ConsultarPagamentoService service;
-  
+
   @Mock
   PagamentoRepository repositoryMock;
 
   @Mock
   PagamentoJpa pagamentoJpaMock;
 
+  @InjectMocks
+  ConsultarPagamentoService service;
+  
   @BeforeEach
   void setup() {
     closeable = MockitoAnnotations.openMocks(this);
-    this.service = new ConsultarPagamentoService(repositoryMock);
   }
 
   @AfterEach
