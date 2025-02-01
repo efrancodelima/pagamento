@@ -6,17 +6,9 @@ import io.swagger.v3.oas.models.tags.Tag;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Configuração do Swagger.
- */
 @Configuration
 public class SwaggerConfig {
 
-  /**
-   * Retorna um objeto do tipo OpenAPI, que configura a exibição da API do swagger.
-   *
-   * @return Um objeto do tipo OpenAPI.
-   */
   @Bean
   public OpenAPI customOpenApi() {
 

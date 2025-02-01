@@ -5,9 +5,6 @@ import br.com.fiap.soat.entity.PagamentoJpa;
 import br.com.fiap.soat.entity.StatusPagamento;
 import java.time.LocalDateTime;
 
-/**
- * Responsável por mapear um objeto NovoPagamentoDto para uma entidade JPA.
- */
 public class PagamentoMapper {
 
   private PagamentoMapper() {}

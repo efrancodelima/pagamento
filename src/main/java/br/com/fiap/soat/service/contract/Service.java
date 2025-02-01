@@ -1,9 +1,8 @@
 package br.com.fiap.soat.service.contract;
 
-/**
- * Interface para os services.
- */
+import br.com.fiap.soat.exception.AppException;
+
 public interface Service<P, Q> {
-  Q execute(P requisicao) throws Exception;
+  Q execute(P requisicao) throws AppException;
 }
 

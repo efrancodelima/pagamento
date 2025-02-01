@@ -10,9 +10,6 @@ import br.com.fiap.soat.validator.NumeroPedidoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Service para consultar um pagamento.
- */
 @Component
 public class ConsultarPagamentoService implements Service<Long, PagamentoJpa> {
 

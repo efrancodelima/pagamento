@@ -4,15 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Bean para a classe RestTemplate.
- */
 @Configuration
 public class AppConfig {
 
-  /**
-   * Retorna o bean RestTemplate.
-   */
   @Bean
   public RestTemplate restTemplate() {
     return new RestTemplate();

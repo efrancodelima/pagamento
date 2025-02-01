@@ -1,8 +1,5 @@
 package br.com.fiap.soat.exception.messages;
 
-/**
- * Mensagens para exceções do tipo Not Found.
- */
 public enum NotFoundMessage {
 
   ID_PAGAMENTO("Nenhum pagamento foi encontrado para o id informado."),

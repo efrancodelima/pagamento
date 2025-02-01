@@ -1,8 +1,5 @@
 package br.com.fiap.soat.exception.messages;
 
-/**
- * Mensagens para exceções do tipo Bad Request.
- */
 public enum BadRequestMessage {
     
   PAG_NULL("Informe os dados do pagamento."),

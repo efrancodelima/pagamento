@@ -1,11 +1,9 @@
 package br.com.fiap.soat.exception;
 
-/**
- * Exceção customizada para regras de negócio.
- */
-public class BusinessRuleException extends Exception {
+public class BusinessRuleException extends AppException {
 
   public BusinessRuleException() {
     super("Esse pedido já possui um pagamento vinculado.");
+    // nesse microsserviço só tem essa mensagem de regra de negócio
   }
 }

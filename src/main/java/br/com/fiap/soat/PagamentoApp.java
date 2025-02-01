@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-/**
- * Classe responsável por iniciar o microsserviço.
- */
 @SpringBootApplication
 @EnableMongoRepositories(basePackages = "br.com.fiap.soat.repository")
 public class PagamentoApp {

@@ -12,9 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controlador REST para criar um pagamento e vinculá-lo a um pedido.
- */
 @RestController
 @RequestMapping("/pagamento")
 public class ConsultarPagamentoImpl  implements ConsultarPagamento {

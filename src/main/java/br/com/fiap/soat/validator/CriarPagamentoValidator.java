@@ -5,9 +5,6 @@ import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import java.math.BigDecimal;
 
-/**
- * Responsável por validar a requisição do controller NovoPagamento.
- */
 public class CriarPagamentoValidator {
 
   private CriarPagamentoValidator() {}

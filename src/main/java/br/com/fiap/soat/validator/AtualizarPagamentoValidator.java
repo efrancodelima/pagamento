@@ -5,9 +5,6 @@ import br.com.fiap.soat.entity.StatusPagamento;
 import br.com.fiap.soat.exception.BadRequestException;
 import br.com.fiap.soat.exception.messages.BadRequestMessage;
 
-/**
- * Responsável por validar a requisição do controller AtualizarPagamento.
- */
 public class AtualizarPagamentoValidator {
 
   private AtualizarPagamentoValidator() {}

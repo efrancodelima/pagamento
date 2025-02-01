@@ -6,8 +6,8 @@ spring:
     name: app-pagamento
   data:
     mongodb:
-      uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
-      # uri: ${AWS_URI_MONGO}
+      # uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
+      uri: ${AWS_URI_MONGO}
       auto-index-creation: true
 
 # Profile para a AWS
@@ -17,7 +17,7 @@ spring:
     activate:
       on-profile: dev
 
-# Profile local para rodar com MongoDB Embedded
+# Profile para o localhost
 ---
 spring:
   config:

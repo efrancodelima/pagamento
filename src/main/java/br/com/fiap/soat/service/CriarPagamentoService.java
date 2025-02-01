@@ -11,9 +11,6 @@ import br.com.fiap.soat.validator.CriarPagamentoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Service para criar um pagamento.
- */
 @Component
 public class CriarPagamentoService implements Service<CriarPagamentoDto, PagamentoJpa> {
 

@@ -5,9 +5,6 @@ import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * Interface do repositório de clientes.
- */
 @Repository
 public interface PagamentoRepository extends MongoRepository<PagamentoJpa, Long> {
 
