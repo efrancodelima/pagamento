@@ -1,6 +1,5 @@
 package br.com.fiap.soat.controller.contract;
 
-
 import br.com.fiap.soat.controller.wrapper.ResponseWrapper;
 import br.com.fiap.soat.entity.PagamentoJpa;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,9 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-/**
- * Interface da API Pagamentos, rota para consultar pagamento.
- */
 @Tag(name = "Pagamento")
 public interface ConsultarPagamento {
 
@@ -49,9 +45,6 @@ public interface ConsultarPagamento {
   ResponseEntity<ResponseWrapper<PagamentoJpa>>
       consultarPagamento(@PathVariable("pedido") long numeroPedido);
 
-  /** 
-   * Constantes usadas na interface.
-   */
   final class Constantes {
 
     private Constantes() {}
@@ -94,7 +87,5 @@ public interface ConsultarPagamento {
         }
         """;
 
-
   }
-
 }

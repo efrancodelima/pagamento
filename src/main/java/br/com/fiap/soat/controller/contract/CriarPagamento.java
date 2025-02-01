@@ -9,9 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-/**
- * Interface da API Pagamentos, rota para criar novo pagamento.
- */
 @Tag(name = "Pagamento")
 public interface CriarPagamento {
 
