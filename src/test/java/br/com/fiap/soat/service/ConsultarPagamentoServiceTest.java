@@ -1,6 +1,5 @@
 package br.com.fiap.soat.service;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
@@ -39,14 +38,16 @@ class ConsultarPagamentoServiceTest {
   }
 
   @Test
-  void deveConsultarPagamentoComSucesso() {
+  void deveConsultarPagamentoComSucesso() throws Exception {
 
+    // Arrange
     doReturn(Optional.of(pagamentoJpaMock))
         .when(repositoryMock).findByNumeroPedido(Mockito.anyLong());
 
-    assertDoesNotThrow(() -> {
-      var response = service.execute(1L);
-      assertEquals(pagamentoJpaMock, response);
-    });
+    // Act
+    var response = service.execute(1L);
+
+    // Assert
+    assertEquals(pagamentoJpaMock, response);
   }
 }

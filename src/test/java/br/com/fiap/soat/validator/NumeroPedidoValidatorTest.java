@@ -9,7 +9,6 @@ import br.com.fiap.soat.exception.messages.BadRequestMessage;
 import org.junit.jupiter.api.Test;
 
 class NumeroPedidoValidatorTest {
-  
 
   @Test
   void naoDeveLancarExcecao() {

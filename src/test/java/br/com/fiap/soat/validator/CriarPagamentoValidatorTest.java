@@ -15,8 +15,10 @@ class CriarPagamentoValidatorTest {
   @Test
   void naoDeveLancarExcecao() {
 
+    // Arrange
     var pagamento = new CriarPagamentoDto(1L, BigDecimal.valueOf(10));
 
+    // Act and assert
     assertDoesNotThrow(() -> {
       CriarPagamentoValidator.validar(pagamento);
     });
@@ -24,19 +26,20 @@ class CriarPagamentoValidatorTest {
 
   @Test
   void deveLancarExcecaoQuandoParametroForNulo() {
-    
     var exception = assertThrows(BadRequestException.class, () -> {
       CriarPagamentoValidator.validar(null);
     });
-
+    
     assertEquals(exception.getMessage(), BadRequestMessage.PAG_NULL.getMessage());
   }
 
   @Test
   void deveLancarExcecaoQuandoValorForNulo() {
-    
+
+    // Arrange
     var pagamento = new CriarPagamentoDto(1L, null);
-    
+
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       CriarPagamentoValidator.validar(pagamento);
     });
@@ -46,14 +49,15 @@ class CriarPagamentoValidatorTest {
 
   @Test
   void deveLancarExcecaoQuandoValorForMenorQueUmCentavo() {
-    
+
+    // Arrange
     var pagamento = new CriarPagamentoDto(1L, BigDecimal.ZERO);
-    
+
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       CriarPagamentoValidator.validar(pagamento);
     });
 
     assertEquals(exception.getMessage(), BadRequestMessage.VAL_PED_MIN.getMessage());
   }
-
 }

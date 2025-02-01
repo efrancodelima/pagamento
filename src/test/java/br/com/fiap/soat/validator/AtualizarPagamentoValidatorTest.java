@@ -15,8 +15,10 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void naoDeveLancarExcecao() {
 
+    // Arrange
     var notificacao = new AtualizarPagamentoDto(1L, StatusPagamento.APROVADO.getMessage());
 
+    // Act and assert
     assertDoesNotThrow(() -> {
       AtualizarPagamentoValidator.validar(notificacao);
     });
@@ -25,6 +27,7 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void deveLancarExcecaoQuandoParametroForNulo() {
 
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       AtualizarPagamentoValidator.validar(null);
     });
@@ -35,8 +38,10 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void deveLancarExcecaoQuandoIdPagamentoForNulo() {
 
+    // Arrange
     var notificacao = new AtualizarPagamentoDto(null, StatusPagamento.APROVADO.getMessage());
 
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       AtualizarPagamentoValidator.validar(notificacao);
     });
@@ -47,8 +52,10 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void deveLancarExcecaoQuandoIdPagamentoForInvalido() {
 
+    // Arrange
     var notificacao = new AtualizarPagamentoDto(-1L, StatusPagamento.APROVADO.getMessage());
 
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       AtualizarPagamentoValidator.validar(notificacao);
     });
@@ -59,8 +66,10 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void deveLancarExcecaoQuandoStatusPagamentoForNulo() {
 
+    // Arrange
     var notificacao = new AtualizarPagamentoDto(1L, null);
 
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       AtualizarPagamentoValidator.validar(notificacao);
     });
@@ -71,8 +80,10 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void deveLancarExcecaoQuandoStatusForStringVazia() {
 
+    // Arrange
     var notificacao = new AtualizarPagamentoDto(1L, "  ");
 
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       AtualizarPagamentoValidator.validar(notificacao);
     });
@@ -83,8 +94,10 @@ class AtualizarPagamentoValidatorTest {
   @Test
   void deveLancarExcecaoQuandoStatusPagamentoForInvalido() {
 
+    // Arrange
     var notificacao = new AtualizarPagamentoDto(1L, "abc");
 
+    // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
       AtualizarPagamentoValidator.validar(notificacao);
     });

@@ -1,6 +1,5 @@
 package br.com.fiap.soat.controller.implementation;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
@@ -42,48 +41,49 @@ class ConsultarPagamentoImplTest {
 
   @Test
   void deveConsultarUmPagamentoComSucesso() throws Exception {
+
+    // Arrange
     var pagamentoJpa = new PagamentoJpa();
     doReturn(pagamentoJpa).when(serviceMock).execute(Mockito.anyLong());
-    
-    assertDoesNotThrow(() -> {
-      
-      var response = controller.consultarPagamento(1L);
-      
-      assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
-      assertEquals(pagamentoJpa, response.getBody().getData());
-      assertEquals(null, response.getBody().getErrorMsg());
-    });
+
+    // Act
+    var response = controller.consultarPagamento(1L);
+
+    // Assert
+    assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
+    assertEquals(pagamentoJpa, response.getBody().getData());
+    assertEquals(null, response.getBody().getErrorMsg());
   }
 
   @Test
-  void deveRetornarUmBadRequest() throws Exception {
+  void deveRetornarStatusBadRequest() throws Exception {
 
+    // Arrange
     var exception = new BadRequestException(BadRequestMessage.NUM_PED_NULL);
     doThrow(exception).when(serviceMock).execute(Mockito.any());
 
-    assertDoesNotThrow(() -> {
-      
-      var response = controller.consultarPagamento(1L);
-      
-      assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode().value());
-      assertEquals(null, response.getBody().getData());
-      assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
-    });
+    // Act
+    var response = controller.consultarPagamento(1L);
+
+    // Assert
+    assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode().value());
+    assertEquals(null, response.getBody().getData());
+    assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
   }
 
   @Test
-  void deveRetornarUmNotFound() throws Exception {
+  void deveRetornarStatusNotFound() throws Exception {
 
+    // Arrange
     var exception = new NotFoundException(NotFoundMessage.PAG_NUM_PEDIDO);
     doThrow(exception).when(serviceMock).execute(Mockito.any());
 
-    assertDoesNotThrow(() -> {
+    // Act
+    var response = controller.consultarPagamento(1L);
 
-      var response = controller.consultarPagamento(1L);
-      
-      assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value());
-      assertEquals(null, response.getBody().getData());
-      assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
-    });
+    // Assert
+    assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value());
+    assertEquals(null, response.getBody().getData());
+    assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
   }
 }

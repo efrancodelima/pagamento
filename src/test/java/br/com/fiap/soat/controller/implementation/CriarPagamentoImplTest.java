@@ -1,6 +1,5 @@
 package br.com.fiap.soat.controller.implementation;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
@@ -44,49 +43,50 @@ class CriarPagamentoImplTest {
   }
 
   @Test
-  void deveCriarUmPagamentoComSucesso() throws Exception {
+  void deveCriarPagamentoComSucesso() throws Exception {
+
+    // Arrange
     var pagamentoJpa = new PagamentoJpa();
     doReturn(pagamentoJpa).when(serviceMock).execute(Mockito.any());
-    
-    assertDoesNotThrow(() -> {
-      
-      var response = controller.criarPagamento(requisicaoMock);
-      
-      assertEquals(HttpStatus.CREATED.value(), response.getStatusCode().value());
-      assertEquals(pagamentoJpa, response.getBody().getData());
-      assertEquals(null, response.getBody().getErrorMsg());
-    });
+
+    // Act
+    var response = controller.criarPagamento(requisicaoMock);
+
+    // Assert
+    assertEquals(HttpStatus.CREATED.value(), response.getStatusCode().value());
+    assertEquals(pagamentoJpa, response.getBody().getData());
+    assertEquals(null, response.getBody().getErrorMsg());
   }
 
   @Test
-  void deveRetornarUmBadRequest() throws Exception {
+  void deveRetornarStatusBadRequest() throws Exception {
 
+    // Arrange
     var exception = new BadRequestException(BadRequestMessage.PAG_NULL);
     doThrow(exception).when(serviceMock).execute(Mockito.any());
 
-    assertDoesNotThrow(() -> {
-      
-      var response = controller.criarPagamento(requisicaoMock);
-      
-      assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode().value());
-      assertEquals(null, response.getBody().getData());
-      assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
-    });
+    // Act
+    var response = controller.criarPagamento(requisicaoMock);
+
+    // Assert
+    assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode().value());
+    assertEquals(null, response.getBody().getData());
+    assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
   }
 
   @Test
-  void deveRetornarUmBusinesRule() throws Exception {
+  void deveRetornarStatusBusinesRule() throws Exception {
 
+    // Arrange
     var exception = new BusinessRuleException();
     doThrow(exception).when(serviceMock).execute(Mockito.any());
 
-    assertDoesNotThrow(() -> {
-      
-      var response = controller.criarPagamento(requisicaoMock);
-      
-      assertEquals(HttpStatus.UNPROCESSABLE_ENTITY.value(), response.getStatusCode().value());
-      assertEquals(null, response.getBody().getData());
-      assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
-    });
+    // Act
+    var response = controller.criarPagamento(requisicaoMock);
+
+    // Assert
+    assertEquals(HttpStatus.UNPROCESSABLE_ENTITY.value(), response.getStatusCode().value());
+    assertEquals(null, response.getBody().getData());
+    assertEquals(exception.getMessage(), response.getBody().getErrorMsg());
   }
 }

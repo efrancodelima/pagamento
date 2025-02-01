@@ -1,6 +1,5 @@
 package br.com.fiap.soat.service;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
@@ -41,16 +40,16 @@ class AtualizarPagamentoServiceTest {
   }
 
   @Test
-  void deveAtualizarPagamentoComSucesso() {
+  void deveAtualizarPagamentoComSucesso() throws Exception {
 
+    // Arrange
     doReturn(Optional.of(pagamentoJpaMock)).when(repositoryMock).findById(Mockito.anyLong());
-
     var requisicao = new AtualizarPagamentoDto(1L, StatusPagamento.APROVADO.getMessage());
 
-    assertDoesNotThrow(() -> {
-      var response = service.execute(requisicao);
-      assertEquals(null, response);
-      // esse service atende ao webhook do Mercado Pago, então a resposta deve ser nula
-    });
+    // Act
+    var response = service.execute(requisicao);
+
+    // Assert (sim, a resposta deve ser nula)
+    assertEquals(null, response);
   }
 }
