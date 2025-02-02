@@ -6,7 +6,6 @@ spring:
     name: app-pagamento
   data:
     mongodb:
-      # uri: mongodb://seu_usuario:sua_senha@localhost:27017/pagamento?authSource=admin
       uri: ${AWS_URI_MONGO}
       auto-index-creation: true
 
