@@ -23,7 +23,7 @@ public class CriarPagamentoTest {
 
   @Given("que o sistema de pedido tem uma notificação de checkout para fazer")
   public void criarNotificacao() {
-    requisicao = new CriarPagamentoDto(8005L, BigDecimal.valueOf(45));
+    requisicao = new CriarPagamentoDto(8007L, BigDecimal.valueOf(45));
   }
 
   @When("o sistema de pagamento receber a notificação")
