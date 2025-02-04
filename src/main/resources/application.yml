@@ -24,11 +24,5 @@ spring:
       on-profile: local
   data:
     mongodb:
+      uri: ${LOCAL_URI_MONGO}
       auto-index-creation: true
-      embedded:
-        version: 4.18.1
-        storage:
-          database-dir: target/mongo-data
-          repl-set-name: rs0
-        features:
-          sync-delay: 0
