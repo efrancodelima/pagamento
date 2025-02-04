@@ -36,7 +36,7 @@ jobs:
       - name: Start Application
         env:
           TEST_URI_MONGO: ${{ secrets.TEST_URI_MONGO }}
-        run: mvn spring-boot:run -Dspring-boot.run.profiles=local
+        run: mvn spring-boot:run -Dspring-boot.run.profiles=test
 
       - name: Build with Maven
         env:
