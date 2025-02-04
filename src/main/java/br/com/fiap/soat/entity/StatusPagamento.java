@@ -19,7 +19,7 @@ public enum StatusPagamento {
     this.texto = texto;
   }
 
-  public String getMessage() {
+  public String getTexto() {
     return texto;
   }
 

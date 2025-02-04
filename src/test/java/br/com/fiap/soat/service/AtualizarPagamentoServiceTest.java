@@ -44,7 +44,7 @@ class AtualizarPagamentoServiceTest {
 
     // Arrange
     doReturn(Optional.of(pagamentoJpaMock)).when(repositoryMock).findById(Mockito.anyLong());
-    var requisicao = new AtualizarPagamentoDto(1L, StatusPagamento.APROVADO.getMessage());
+    var requisicao = new AtualizarPagamentoDto(1L, StatusPagamento.APROVADO.getTexto());
 
     // Act
     var response = service.execute(requisicao);

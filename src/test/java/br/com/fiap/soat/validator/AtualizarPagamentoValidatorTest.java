@@ -16,7 +16,7 @@ class AtualizarPagamentoValidatorTest {
   void naoDeveLancarExcecao() {
 
     // Arrange
-    var notificacao = new AtualizarPagamentoDto(1L, StatusPagamento.APROVADO.getMessage());
+    var notificacao = new AtualizarPagamentoDto(1L, StatusPagamento.APROVADO.getTexto());
 
     // Act and assert
     assertDoesNotThrow(() -> {
@@ -39,7 +39,7 @@ class AtualizarPagamentoValidatorTest {
   void deveLancarExcecaoQuandoIdPagamentoForNulo() {
 
     // Arrange
-    var notificacao = new AtualizarPagamentoDto(null, StatusPagamento.APROVADO.getMessage());
+    var notificacao = new AtualizarPagamentoDto(null, StatusPagamento.APROVADO.getTexto());
 
     // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {
@@ -53,7 +53,7 @@ class AtualizarPagamentoValidatorTest {
   void deveLancarExcecaoQuandoIdPagamentoForInvalido() {
 
     // Arrange
-    var notificacao = new AtualizarPagamentoDto(-1L, StatusPagamento.APROVADO.getMessage());
+    var notificacao = new AtualizarPagamentoDto(-1L, StatusPagamento.APROVADO.getTexto());
 
     // Act and assert
     var exception = assertThrows(BadRequestException.class, () -> {

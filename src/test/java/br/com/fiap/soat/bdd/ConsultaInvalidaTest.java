@@ -16,34 +16,33 @@ import org.springframework.http.MediaType;
 
 public class ConsultaInvalidaTest {
 
-  private long request;
-  private Response response;
+  private long requisicao;
+  private Response resposta;
   private final String url = "http://localhost:8081/pagamento/consultar/{pedido}";
 
   @Given("que o usuário cria uma requisição para consultar o pagamento de um pedido")
   public void criarRequisicao() {
-    request = -15L;
+    requisicao = -15L;
   }
 
   @When("o usuário envia a requisição para o endpoint de consulta")
   public void enviarRequisicao() {
-    response = given()
+    resposta = given()
       .contentType(MediaType.APPLICATION_JSON_VALUE)
       .when()
-      .get(url, request);
+      .get(url, requisicao);
   }
 
   @Then("o usuário deve receber uma resposta com status code 400")
   public void conferirStatusCode() {
     
-    assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode());
+    assertEquals(HttpStatus.BAD_REQUEST.value(), resposta.getStatusCode());
   }
 
   @Then("a resposta deve conter o motivo do erro")
-  public void conferirMensagemErro()
-      throws Exception {
+  public void conferirMensagemErro() throws Exception {
     
-    assertEquals(BadRequestMessage.NUM_PED_MIN.getMessage(), getErrorMessage(response));
+    assertEquals(BadRequestMessage.NUM_PED_MIN.getMessage(), getErrorMessage(resposta));
   }
 
   // Métodos auxiliares
