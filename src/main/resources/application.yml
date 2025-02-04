@@ -16,13 +16,13 @@ spring:
     activate:
       on-profile: dev
 
-# Profile para o localhost
+# Profile para testes
 ---
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: test
   data:
     mongodb:
-      uri: ${LOCAL_URI_MONGO}
+      uri: ${TEST_URI_MONGO}
       auto-index-creation: true

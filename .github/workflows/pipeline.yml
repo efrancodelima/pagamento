@@ -33,6 +33,16 @@ jobs:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
         run: mvn clean install
 
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.12.0
+        with:
+          mongodb-version: '4.4'
+
+      - name: Start Application
+        env:
+          TEST_URI_MONGO: ${{ secrets.TEST_URI_MONGO }}
+        run: mvn spring-boot:run -Dspring-boot.run.profiles=local
+
       - name: Run tests
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
