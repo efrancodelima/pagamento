@@ -34,15 +34,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      # - name: Start MongoDB
-      #   uses: supercharge/mongodb-github-action@1.12.0
-      #   with:
-      #     mongodb-version: '4.4'
-
       - name: Start Application
         env:
           TEST_URI_MONGO: ${{ secrets.TEST_URI_MONGO }}
-        run: mvn spring-boot:run -Dspring-boot.run.profiles=test
+        run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
       - name: Build with Maven
         env:
