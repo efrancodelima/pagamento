@@ -37,7 +37,8 @@ jobs:
       - name: Start Application
         env:
           URL_MONGO_TEST: mongodb://localhost:27017
-        run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
+        # run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
+        run: mvn spring-boot:run -Dspring-boot.run.profiles=test
 
       - name: Waiting for application
         run: ./s6-wait.sh
