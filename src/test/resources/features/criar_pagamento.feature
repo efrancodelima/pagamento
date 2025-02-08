@@ -1,6 +1,6 @@
 # language: pt
 
-Funcionalidade: Notificar checkout do pedido
+Funcionalidade: Criar pagamento ao receber notificação do ckechout
 
   Cenário: Sistema de pedido notifica o checkout
     Dado que o sistema de pedido tem uma notificação de checkout para fazer
