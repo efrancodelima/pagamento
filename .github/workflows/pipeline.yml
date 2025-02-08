@@ -39,6 +39,9 @@ jobs:
           URL_MONGO_TEST: mongodb://localhost:27017
         run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
+      - name: Waiting for application
+        run: sleep 1m
+
       - name: Build with Maven
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.13-11/x64
