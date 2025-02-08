@@ -34,20 +34,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      - name: Wait for MongoDB
-        run: until nc -z localhost 27017; do echo "Waiting for MongoDB..."; sleep 2; done
-
-      - name: Verify MongoDB Connection
-        run: |
-          apt-get update && apt-get install -y mongodb-clients
-          mongo --host localhost --port 27017 --eval 'db.runCommand({ connectionStatus: 1 })'
-
       - name: Start Application
         env:
-          # URL_MONGO_TEST: ${{ secrets.URL_MONGO_TEST }}
-          URL_MONGO_TEST: mongodb://localhost:27017
-        # run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
+          URL_MONGO_TEST: mongodb://mongo:27017
         run: mvn spring-boot:run -Dspring-boot.run.profiles=test
+        # run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
       - name: Build with Maven
         env:
