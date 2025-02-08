@@ -13,7 +13,8 @@ jobs:
     services:
       mongo:
         image: mongo:4.4
-        restart: always
+        ports:
+          - 27017:27017
 
     steps:
       - name: Checkout code
@@ -32,9 +33,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven
-
-      - name: Check MongoDB URL
-        run: echo $URL_MONGO_TEST
 
       - name: Start Application
         env:
