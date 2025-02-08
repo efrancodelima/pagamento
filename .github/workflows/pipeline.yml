@@ -11,10 +11,9 @@ jobs:
     environment: dev
 
     services:
-      mongodb:
+      mongo:
         image: mongo:4.4
-        ports:
-          - 27017:27017
+        restart: always
 
     steps:
       - name: Checkout code
@@ -34,9 +33,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
+      - name: Check MongoDB URL
+        run: echo $URL_MONGO_TEST
+
       - name: Start Application
         env:
-          URL_MONGO_TEST: mongodb://mongo:27017
+          URL_MONGO_TEST: mongodb://mongo:27017/testdb
         run: mvn spring-boot:run -Dspring-boot.run.profiles=test
         # run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
