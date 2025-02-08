@@ -37,8 +37,7 @@ jobs:
       - name: Start Application
         env:
           URL_MONGO_TEST: mongodb://localhost:27017/testdb
-        run: mvn spring-boot:run -Dspring-boot.run.profiles=test
-        # run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
+        run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
       - name: Build with Maven
         env:
