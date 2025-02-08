@@ -24,5 +24,5 @@ spring:
       on-profile: test
   data:
     mongodb:
-      uri: ${TEST_URI_MONGO}
+      uri: ${URL_MONGO_TEST}
       auto-index-creation: true

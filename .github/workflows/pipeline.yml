@@ -36,7 +36,7 @@ jobs:
 
       - name: Start Application
         env:
-          TEST_URI_MONGO: ${{ secrets.TEST_URI_MONGO }}
+          URL_MONGO_TEST: mongodb://localhost:27017
         run: nohup mvn spring-boot:run -Dspring-boot.run.profiles=test &
 
       - name: Build with Maven
