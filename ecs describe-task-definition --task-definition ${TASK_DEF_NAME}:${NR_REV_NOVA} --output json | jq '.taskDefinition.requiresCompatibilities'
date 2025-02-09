@@ -1,0 +1,25 @@
+{
+    "clusters": [
+        {
+            "clusterArn": "arn:aws:ecs:us-east-1:145023126233:cluster/cluster-lanchonete",
+            "clusterName": "cluster-lanchonete",
+            "status": "ACTIVE",
+            "registeredContainerInstancesCount": 0,
+            "runningTasksCount": 4,
+            "pendingTasksCount": 0,
+            "activeServicesCount": 0,
+            "statistics": [],
+            "tags": [],
+            "settings": [],
+            "capacityProviders": [
+                "FARGATE",
+                "FARGATE_SPOT"
+            ],
+            "defaultCapacityProviderStrategy": [],
+            "serviceConnectDefaults": {
+                "namespace": "arn:aws:servicediscovery:us-east-1:145023126233:namespace/ns-vvzg3ssjrnaf7wqe"
+            }
+        }
+    ],
+    "failures": []
+}
