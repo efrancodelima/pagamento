@@ -3,8 +3,8 @@
 # Inicia o script
 echo "Script iniciado."
 
-# Clona a task definition atual, removendo os campos desnecessários
-TASK_DEF_NAME="app-pagamento"
+# Clona a task definition mais recente, removendo os campos desnecessários
+TASK_DEF_NAME="task-def-pagamento"
 NEW_TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME} --output json 2>/dev/null | \
   jq '.taskDefinition' | \
   jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)')
