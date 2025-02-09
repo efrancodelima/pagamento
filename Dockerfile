@@ -2,6 +2,7 @@
 FROM openjdk:17-jdk-alpine
 
 ## Define as variáveis de ambiente
+ARG AWS_URI_MONGO
 ENV AWS_URI_MONGO=${AWS_URI_MONGO}
 
 ## Define o diretório de trabalho da imagem

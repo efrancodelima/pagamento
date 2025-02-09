@@ -75,7 +75,7 @@ jobs:
       - name: Build Docker image
         env:
           AWS_URI_MONGO: ${{ secrets.AWS_URI_MONGO }}
-        run: docker build -t app-pagamento -f Dockerfile .
+        run: docker build -t app-pagamento -f Dockerfile . --build-arg AWS_URI_MONGO=$AWS_URI_MONGO
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
