@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-alpine
 
 ## Define as variáveis de ambiente
-ENV AWS_URI_MONGO=${DATASOURCE_URL}
+ENV AWS_URI_MONGO=${AWS_URI_MONGO}
 
 ## Define o diretório de trabalho da imagem
 WORKDIR /app
