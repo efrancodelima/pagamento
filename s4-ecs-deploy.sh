@@ -28,7 +28,7 @@ NR_REV_NOVA=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME
 # Inicia a task com a revisão nova
 aws ecs run-task --cluster ${CLUSTER_NAME} --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA} \
   --network-configuration "awsvpcConfiguration={subnets=[subnet-012e4f442963083fd, \
-  subnet-019dd408a827986ef],securityGroups=[pagamento-sg]}"
+  subnet-019dd408a827986ef],securityGroups=[sg-0abd677a96f8be6c2]}"
 
 # Para a task anterior
 aws ecs stop-task --cluster ${CLUSTER_NAME} --task ${ID_REV_ATUAL}
