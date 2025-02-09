@@ -3,12 +3,9 @@
 # Inicia o script
 echo "Script iniciado."
 
-TASK_DEF_NAME="task-def-pagamento"
 CLUSTER_NAME="cluster-lanchonete"
-
-# Pega o id da task atual
-ID_REV_ATUAL=$(aws ecs list-tasks --cluster ${CLUSTER_NAME} --family ${TASK_DEF_NAME} \
-  --output json | jq -r '.taskArns[0]' | awk -F'/' '{print $NF}')
+SERVICE_NAME="pagamento-service"
+TASK_DEF_NAME="task-def-pagamento"
 
 # Clona a task definition mais recente, removendo os campos desnecessários
 NEW_TASK_DEFINITION=$(aws ecs describe-task-definition \
@@ -19,18 +16,17 @@ NEW_TASK_DEFINITION=$(aws ecs describe-task-definition \
 REGISTERED_TASK=$(aws ecs register-task-definition --cli-input-json \
   "${NEW_TASK_DEFINITION}" --output json)
 
-# Pega o número da nova revisão da task definition
+echo "Registrou a nova task definition."
+
+# Pega o número da revisão da nova task definition
 NR_REV_NOVA=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME} \
   --output json | jq -r '.taskDefinition.revision')
 
-# Inicia a task com a revisão nova
-RUN_TASK=$(aws ecs run-task --cluster ${CLUSTER_NAME} \
-  --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA} --launch-type FARGATE \
-  --network-configuration "awsvpcConfiguration={subnets=[subnet-012e4f442963083fd, subnet-019dd408a827986ef],securityGroups=[sg-0abd677a96f8be6c2]}")
+# Atualiza o service
+UPDATE=$(aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} \
+  --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA})
 
-# Para a task anterior
-STOP_TASK=$(aws ecs stop-task --cluster ${CLUSTER_NAME} --task ${ID_REV_ATUAL})
+echo "Atualizou o service."
 
 # Encerra o script
-echo "Deploy realizado com sucesso!"
 echo "Script finalizado."
