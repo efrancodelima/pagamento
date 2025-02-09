@@ -3,21 +3,34 @@
 # Inicia o script
 echo "Script iniciado."
 
-# Clona a task definition mais recente, removendo os campos desnecessários
 TASK_DEF_NAME="task-def-pagamento"
-NEW_TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME} --output json 2>/dev/null | \
+CLUSTER_NAME="cluster-lanchonete"
+
+# Pega o número da revisão atual da task definition
+ID_REV_ATUAL=$(aws ecs list-tasks --cluster ${CLUSTER_NAME} --family ${TASK_DEF_NAME} \
+  --output json | jq -r '.taskArns[0]' | awk -F'/' '{print $NF}')
+
+# Clona a task definition mais recente, removendo os campos desnecessários
+NEW_TASK_DEFINITION=$(aws ecs describe-task-definition \
+  --task-definition ${TASK_DEF_NAME} --output json 2>/dev/null | \
   jq '.taskDefinition' | \
-  jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)')
+  jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, \
+  .compatibilities, .registeredAt, .registeredBy)')
 
 # Registra a nova task definition
-REGISTERED_TASK=$(aws ecs register-task-definition --cli-input-json "${NEW_TASK_DEFINITION}" --output json 2>/dev/null)
+REGISTERED_TASK=$(aws ecs register-task-definition --cli-input-json \
+  "${NEW_TASK_DEFINITION}" --output json 2>/dev/null)
 
-# Atualiza o serviço para usar a nova task definition
-CLUSTER_NAME="cluster-lanchonete"
-SERVICE_NAME="app-pagamento"
-NEW_TASK_REVISION=$(echo $REGISTERED_TASK | jq -r '.taskDefinition.revision')
+# Pega o número da nova revisão da task definition
+NR_REV_NOVA=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME} \
+  --output json | jq '.taskDefinition.revision')
 
-UPDATE=$(aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --task-definition ${TASK_DEF_NAME}:$NEW_TASK_REVISION --output json 2>/dev/null)
+# Faz o deploy da revisão nova e remova a anterior
+aws ecs run-task --cluster ${CLUSTER_NAME} --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA} \
+  --network-configuration "awsvpcConfiguration={subnets=[subnet-012e4f442963083fd, \
+  subnet-019dd408a827986ef],securityGroups=[pagamento-sg]}"
+
+aws ecs stop-task --cluster ${CLUSTER_NAME} --task ${ID_REV_ATUAL}
 
 # Encerra o script
 echo "Deploy realizado com sucesso!"
