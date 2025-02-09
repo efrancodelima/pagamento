@@ -74,10 +74,8 @@ jobs:
 
       - name: Build Docker image
         env:
-          DATASOURCE_URL: ${{ secrets.DB_URL }}
-          DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
-          DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        run: docker build -t app-lanchonete -f Dockerfile .
+          AWS_URI_MONGO: ${{ secrets.AWS_URI_MONGO }}
+        run: docker build -t app-pagamento -f Dockerfile .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -103,5 +101,5 @@ jobs:
         if: always() && env.LOGIN_ECR == 'true'
         run: docker logout ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
 
-      - name: Deploy on Amazon ECS
-        run: ./s4-ecs-deploy.sh
+      # - name: Deploy on Amazon ECS
+      #   run: ./s4-ecs-deploy.sh
