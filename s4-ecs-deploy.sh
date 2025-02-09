@@ -12,26 +12,24 @@ ID_REV_ATUAL=$(aws ecs list-tasks --cluster ${CLUSTER_NAME} --family ${TASK_DEF_
 
 # Clona a task definition mais recente, removendo os campos desnecessários
 NEW_TASK_DEFINITION=$(aws ecs describe-task-definition \
-  --task-definition ${TASK_DEF_NAME} --output json 2>/dev/null | \
-  jq '.taskDefinition' | \
-  jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, \
-  .compatibilities, .registeredAt, .registeredBy)')
+  --task-definition ${TASK_DEF_NAME} --output json | \
+  jq '.taskDefinition | del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)')
 
 # Registra a nova task definition
 REGISTERED_TASK=$(aws ecs register-task-definition --cli-input-json \
-  "${NEW_TASK_DEFINITION}" --output json 2>/dev/null)
+  "${NEW_TASK_DEFINITION}" --output json)
 
 # Pega o número da nova revisão da task definition
 NR_REV_NOVA=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME} \
-  --output json | jq '.taskDefinition.revision')
+  --output json | jq -r '.taskDefinition.revision')
 
 # Inicia a task com a revisão nova
-aws ecs run-task --cluster ${CLUSTER_NAME} --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA} \
-  --network-configuration "awsvpcConfiguration={subnets=[subnet-012e4f442963083fd, \
-  subnet-019dd408a827986ef],securityGroups=[sg-0abd677a96f8be6c2]}"
+RUN_TASK=$(aws ecs run-task --cluster ${CLUSTER_NAME} \
+  --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA} --launch-type FARGATE \
+  --network-configuration "awsvpcConfiguration={subnets=[subnet-012e4f442963083fd, subnet-019dd408a827986ef],securityGroups=[sg-0abd677a96f8be6c2]}")
 
 # Para a task anterior
-aws ecs stop-task --cluster ${CLUSTER_NAME} --task ${ID_REV_ATUAL}
+STOP_TASK=$(aws ecs stop-task --cluster ${CLUSTER_NAME} --task ${ID_REV_ATUAL})
 
 # Encerra o script
 echo "Deploy realizado com sucesso!"

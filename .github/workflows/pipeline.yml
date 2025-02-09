@@ -101,3 +101,4 @@ jobs:
 
       - name: Deploy on Amazon ECS
         run: ./s4-ecs-deploy.sh
+
