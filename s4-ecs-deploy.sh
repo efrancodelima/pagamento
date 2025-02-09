@@ -6,7 +6,7 @@ echo "Script iniciado."
 TASK_DEF_NAME="task-def-pagamento"
 CLUSTER_NAME="cluster-lanchonete"
 
-# Pega o número da revisão atual da task definition
+# Pega o id da task atual
 ID_REV_ATUAL=$(aws ecs list-tasks --cluster ${CLUSTER_NAME} --family ${TASK_DEF_NAME} \
   --output json | jq -r '.taskArns[0]' | awk -F'/' '{print $NF}')
 
@@ -25,11 +25,12 @@ REGISTERED_TASK=$(aws ecs register-task-definition --cli-input-json \
 NR_REV_NOVA=$(aws ecs describe-task-definition --task-definition ${TASK_DEF_NAME} \
   --output json | jq '.taskDefinition.revision')
 
-# Faz o deploy da revisão nova e remova a anterior
+# Inicia a task com a revisão nova
 aws ecs run-task --cluster ${CLUSTER_NAME} --task-definition ${TASK_DEF_NAME}:${NR_REV_NOVA} \
   --network-configuration "awsvpcConfiguration={subnets=[subnet-012e4f442963083fd, \
   subnet-019dd408a827986ef],securityGroups=[pagamento-sg]}"
 
+# Para a task anterior
 aws ecs stop-task --cluster ${CLUSTER_NAME} --task ${ID_REV_ATUAL}
 
 # Encerra o script
