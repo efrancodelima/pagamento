@@ -6,7 +6,7 @@
 
     <groupId>br.com.fiap.soat</groupId>
     <artifactId>pagamento-app</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
     <name>Microsserviço de pagamento</name>
     <description>Tech Challenge Fase 4 - Software Architecture</description>
